@@ -1,0 +1,22 @@
+- hosts: [servers]
+  sudo: yes
+  tasks:
+    - name: Install git
+      apt: pkg=git state=installed update_cache=true
+    - name: Create directory
+      file: path=~/App state=directory
+    - name: Create .git 
+      file: path=~/App/.git state=directory
+    - name: Create bare repo
+      raw: git init ~/App/.git --bare
+    - name: Post-receive hook
+      copy: src=./post-receive dest=~/App/.git/hooks
+    - name: Change permissions
+      file: 
+        path: ~/App/.git/hooks/post-receive
+        mode: 777
+      #command: chmod +x ~/App/.git/hooks/post-receive
+    - name: Install npm
+      apt: pkg=npm state=installed update_cache=true
+    - name: Install nodejs
+      apt: pkg=nodejs-legacy state=installed update_cache=true

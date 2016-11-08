@@ -1,0 +1,17 @@
+{
+  "name": "sample",
+  "version": "0.0.1",
+  "description": "Sample app for milestone 3",
+  "main": "app.js",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha -R spec"
+  },
+  "author": "Amruta Shintre",
+  "license": "ISC",
+  "devDependencies": {
+    "underscore": "^1.6.0",
+    "express": "*",
+    "needle": "^0.7.10",
+    "redis": "*"
+  }
+}
