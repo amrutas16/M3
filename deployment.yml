@@ -1,15 +1,4 @@
 ---
-- hosts: production
-  sudo: yes
-  tasks:
-    - name: Install dependencies 
-      npm: path=~/App
-    - name: Install forever globally
-      command: npm install forever -g
-    - name: Start express server
-      command: ~/App/node_modules/.bin/forever start ~/App/main.js
-      # command: nodejs ~/App/main.js
-
 - hosts: canary
   sudo: yes
   tasks:
@@ -18,5 +7,6 @@
     - name: Install forever globally
       command: npm install forever -g
     - name: Start express server
+      command: ~/App/node_modules/.bin/forever stop ~/App/main.js
       command: ~/App/node_modules/.bin/forever start ~/App/main.js
 #ansible-playbook nginx.yml -i inventory

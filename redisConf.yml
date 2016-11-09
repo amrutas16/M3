@@ -1,18 +1,18 @@
-- hosts: redisProxy
+- hosts: [redisProxy]
   sudo: yes
   tasks:
-    # - name: Install build-essential
-    #   apt: name=build-essential
-    # - name: Download redis
-    #   command: wget http://download.redis.io/releases/redis-3.2.5.tar.gz
-    # - name: Untar
-    #   command: tar xzf redis-3.2.5.tar.gz
-    # - name: Install redis
-    #   command: chdir=~/redis-3.2.5 make install
-    #   # become: yes
-    # - name: Copy shell script
-    #   copy: src=redis_installation.sh dest=~/ mode=777
-    # - name: Execute installation script
-    #   shell: ~/redis_installation.sh
+    - name: Install build-essential
+      apt: name=build-essential
+    - name: Download redis
+      command: wget http://download.redis.io/releases/redis-3.2.5.tar.gz
+    - name: Untar
+      command: tar xzf redis-3.2.5.tar.gz
+    - name: Install redis
+      command: chdir=~/redis-3.2.5 make install
+      # become: yes
+    - name: Copy shell script
+      copy: src=redis_installation.sh dest=~/ mode=777
+    - name: Execute installation script
+      shell: ~/redis_installation.sh
     - name: Start redis server
       command: redis-server --protected-mode no --daemonize yes

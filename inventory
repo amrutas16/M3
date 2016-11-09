@@ -1,0 +1,5 @@
+[redisProxy]
+redisProxy ansible_ssh_host=138.197.16.158 ansible_ssh_user=root ansible_ssh_private_key_file=~/.ssh/id_rsa
+[servers]
+production ansible_ssh_host=104.131.169.79 ansible_ssh_user=root ansible_ssh_private_key_file=~/.ssh/id_rsa
+canary ansible_ssh_host=138.197.16.241 ansible_ssh_user=root ansible_ssh_private_key_file=~/.ssh/id_rsa
