@@ -61,5 +61,5 @@ The link to the application which is deployed is :
 Check out the youtube videos here:
 * [Task 1,2,5](https://www.youtube.com/watch?v=2vMwlwFRMuM)
 * [Task 6](https://www.youtube.com/watch?v=NO34TEJAbv4)
-* [Task 3,4]()
+* [Task 3,4](https://youtu.be/7Ma9-vgpLGM)
 
