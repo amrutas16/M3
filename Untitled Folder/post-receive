@@ -1,3 +1,0 @@
-#!/bin/sh
-
-GIT_WORK_TREE=~/App/ git checkout -f
