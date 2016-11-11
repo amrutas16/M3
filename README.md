@@ -46,3 +46,9 @@ Devops MileStone3
 * We are treating an image of size greater than 50,000 bytes as an unstable request.
 * Proxy server intially routes 25% traffic to canary.
 * On receiving an '/upload' for such image, the proxy will stop routing to the canary server and route only to production.
+
+Check out the youtube videos here:
+* [Task 1,2,5](https://www.youtube.com/watch?v=2vMwlwFRMuM)
+* [Task 6](https://www.youtube.com/watch?v=NO34TEJAbv4)
+* [Task 3,4]()
+
