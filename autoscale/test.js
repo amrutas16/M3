@@ -15,9 +15,15 @@ var doClient = require('./droplet.js');
 app.get('/', function(req, res){
   res.send('Autoscale');
 });
+var count = 0;
+// client.set("autoscaleAlert", true);
 
 setInterval(function(){
 	client.get("autoscaleAlert", function(err, value){
+			if(count == 0){
+				value = "true";
+				count = count + 1;
+			}
 			if(value == "true")
 			{
 				console.log("Autoscale Alert!");
@@ -52,7 +58,7 @@ setInterval(function(){
 	})
 }, 2000);
 
-var server = app.listen(3001, function(){
+var server = app.listen(3003, function(){
 	var host = server.address().address;
 	var port = server.address().port;
 
