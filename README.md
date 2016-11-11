@@ -1,13 +1,23 @@
 # MileStone3
 Devops MileStone3
 
+### Team members:
+1. Akanksha Chandre - achand10
+2. Amruta Shintre - ashintr
+3. Vaibhav Rajadhyaksha - vrajadh
+
 ### Setup
+
+The link to the application which is deployed is :  
+[App] (https://github.com/amrutas16/App)
+
 
 * We have used digitalocean droplets to host our servers.
 * We have seperate droplets to host the below servers/environment
   1) Production server
   2) Canary server
-  3) Proxy server and Redis global store
+  3) Proxy server and Redis global store  
+* For deployment, we have used the green-blue deployment strategy used in the Deployment workshop. We have created bare repositories on the production and canary servers, and the changes are pushed directly to these repositories.
 
 ### Tasks
 <hr>
@@ -28,9 +38,12 @@ Devops MileStone3
 #### The ability to monitor the deployed application (using at least 2 metrics) and send alerts using email or SMS (e.g., smtp, mandrill, twilio). An alert can be sent based on some predefined rule.
 * New Relic is used to monitor two metrics of the production environment.
 * Alerts are sent via email if the cpu performance goes above 20% and the memory utilization is above 20%.
+* Email snapshot from NewRelic:
+![Alt text]()
 
 #### The ability to autoscale individual components of production and maintain and track in a central discovery service. Autoscale can be triggered by a predefined rule.
 * New relic service running on production, sends alerts when the metrics exceed their expected value. We have used this         criteria to autoscale the production environment.
+* We have configured a webhook channel in New Relic. The url for this channel is ```<prod_ip>:3001/monitor```. The tool sends a JSON payload to this URL. On receiving an alert, a redis key ```autoscaleAlert``` is set as true. On our local machine, we have set up an express server, ```autoscale.js``` which checks for an alert. If the alert value is true, it creates a new droplet and saves its IP address to a list ```servers```. Thus, from servers, we can keep track of the servers. 
 * For every alert, we are spinning a new droplet that will host the application.
 * The list of every available server is stored in the global redis store and can be seen by making a request to            
   '/listservers'.
@@ -38,7 +51,7 @@ Devops MileStone3
 #### The ability to use feature flags, serviced by a global redis store, to toggle functionality of a deployed feature in production.
 * The production environment currently runs the '/set' and '/get' functionality from HW3.
 * We are switching off the '/set' functionality by using the feature flags.
-* The '/feature' request is made from the local machine, to toggle the value of a 'feature' in the global redis store.
+* The '/on' request is made from the local machine, to toggle the value of a 'feature' in the global redis store.
 * Based on the value of the 'feature' key, the '/set' feature is accessible/ not accessible in production environment.
 
 #### The ability to perform a canary release: Using a proxy/load balancer server, route a percentage of traffic to a newly staged version of software and remaining traffic to a stable version of software. Stop routing traffic to canary if alert is raised.
@@ -50,5 +63,5 @@ Devops MileStone3
 Check out the youtube videos here:
 * [Task 1,2,5](https://www.youtube.com/watch?v=2vMwlwFRMuM)
 * [Task 6](https://www.youtube.com/watch?v=NO34TEJAbv4)
-* [Task 3,4]()
+* [Task 3,4](https://youtu.be/7Ma9-vgpLGM)
 
