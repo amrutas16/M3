@@ -1,7 +1,16 @@
 # MileStone3
 Devops MileStone3
 
+### Team members:
+1. Akanksha Chandre - achand10
+2. Amruta Shintre - ashintr
+3. Vaibhav Rajadhyaksha - vrajadh
+
 ### Setup
+
+The link to the application which is deployed is :  
+[App] (https://github.com/amrutas16/App)
+
 
 * We have used digitalocean droplets to host our servers.
 * We have seperate droplets to host the below servers/environment
@@ -40,7 +49,7 @@ Devops MileStone3
 #### The ability to use feature flags, serviced by a global redis store, to toggle functionality of a deployed feature in production.
 * The production environment currently runs the '/set' and '/get' functionality from HW3.
 * We are switching off the '/set' functionality by using the feature flags.
-* The '/feature' request is made from the local machine, to toggle the value of a 'feature' in the global redis store.
+* The '/on' request is made from the local machine, to toggle the value of a 'feature' in the global redis store.
 * Based on the value of the 'feature' key, the '/set' feature is accessible/ not accessible in production environment.
 
 #### The ability to perform a canary release: Using a proxy/load balancer server, route a percentage of traffic to a newly staged version of software and remaining traffic to a stable version of software. Stop routing traffic to canary if alert is raised.
