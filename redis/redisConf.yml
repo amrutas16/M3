@@ -1,4 +1,4 @@
-- hosts: [redisProxy]
+- hosts: [redis]
   sudo: yes
   tasks:
     - name: Install build-essential

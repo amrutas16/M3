@@ -1,6 +1,10 @@
 var needle = require("needle");
 var os   = require("os");
 var fs = require("fs");
+var redis = require("redis");
+var sleep = require("sleep");
+var redisClient;
+
 var config = {};
 config.token = process.env.DO_token;
 
@@ -9,9 +13,6 @@ var headers =
 	'Content-Type':'application/json',
 	Authorization: 'Bearer ' + config.token
 };
-
-// Documentation for needle:
-// https://github.com/tomas/needle
 
 var dropletId;
 
@@ -41,18 +42,11 @@ var client =
 	}
 };
 
-// console.log('Digital Ocean')
-
-// #############################################
-// #3 Create an droplet with the specified name, region, and image
-// Comment out when completed. ONLY RUN ONCE!!!!!
-// Write down/copy droplet id.
 var name = "production";
 var region = "nyc3"; // Fill one in from #1
 var image = "ubuntu-14-04-x64"; // Fill one in from #2
 
-fs.appendFile("inventory", "[servers]" + "\n")
-create("production")
+create("canary")
 
 function create(name)
 {
@@ -61,19 +55,20 @@ function create(name)
 		// StatusCode 202 - Means server accepted request.
 		if(!err && resp.statusCode == 202)
 		{
-			console.log("Creating droplet")
 			dropletId = body.droplet.id;
-			setTimeout(function(){
+			sleep.sleep(20);
 			client.getDropletIp(function(error, response)
 			{
 				var data = response.body;
 				if( data.droplet )
 				{
-					var ipAddress = data.droplet.networks.v4[0]["ip_address"];		
-					fs.appendFile("inventory", "production ansible_ssh_host=" + ipAddress + " ansible_ssh_user=root ansible_ssh_private_key_file=~/.ssh/id_rsa" + "\n")
+					var ipAddress = data.droplet.networks.v4[0]["ip_address"];
+					fs.writeFile("../proxy/canaryIp.txt", ipAddress);
+					// redisClient.lpush("servers", "canary:" + ipAddress);
+					fs.writeFile("inventory", "canary ansible_ssh_host=" + ipAddress + " ansible_ssh_user=root ansible_ssh_private_key_file=~/.ssh/id_rsa" + "\n")
 				}
 			});
-			}, 10000);		
+			console.log("Droplet created");	
 		}
 	});	
 }

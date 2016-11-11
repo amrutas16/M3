@@ -1,10 +1,11 @@
+---
 - hosts: production
   sudo: yes
   tasks:
     - name: Install dependencies 
       npm: path=~/App
     - name: Install forever globally
-      command: npm install forever -g
+      npm: name=forever global=yes state=present
     - name: Start express server
       # command: ~/App/node_modules/.bin/forever stop ~/App/main.js
-      command: ~/App/node_modules/.bin/forever start ~/App/main.js
+      command: chdir=~/App/ forever start main.js

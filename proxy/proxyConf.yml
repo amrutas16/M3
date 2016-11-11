@@ -1,0 +1,18 @@
+- hosts: [proxy]
+  sudo: yes
+  tasks:
+    - copy: src=./proxyServer.js dest=~/
+    - copy: src=./prodIp.txt dest=~/
+    - copy: src=./canaryIp.txt dest=~/
+    - copy: src=./package.json dest=~/
+    - copy: src=./redisServer.txt dest=~/
+    - name: Install npm
+      apt: pkg=npm state=installed update_cache=true
+    - name: Install nodejs
+      apt: pkg=nodejs-legacy state=installed update_cache=true
+    - name: Install dependencies
+      npm: path=~/
+    - name: Install forever globally
+      npm: name=forever global=yes state=present
+    - name: Start proxy server
+      command: forever start proxyServer.js

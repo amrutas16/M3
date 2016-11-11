@@ -1,8 +1,0 @@
-[redisProxy]
-redisProxy ansible_ssh_host=45.55.189.66 ansible_ssh_user=root ansible_ssh_private_key_file=~/.ssh/id_rsa
-[servers]
-production ansible_ssh_host=104.131.169.79 ansible_ssh_user=root ansible_ssh_private_key_file=~/.ssh/id_rsa
-canary ansible_ssh_host=138.197.16.241 ansible_ssh_user=root ansible_ssh_private_key_file=~/.ssh/id_rsa[redisProxy]
-redisProxy ansible_ssh_host=104.131.190.24 ansible_ssh_user=root ansible_ssh_private_key_file=~/.ssh/id_rsa
-[redisProxy]
-redisProxy ansible_ssh_host=104.131.186.210 ansible_ssh_user=root ansible_ssh_private_key_file=~/.ssh/id_rsa
