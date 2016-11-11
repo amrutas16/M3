@@ -38,6 +38,8 @@ The link to the application which is deployed is :
 #### The ability to monitor the deployed application (using at least 2 metrics) and send alerts using email or SMS (e.g., smtp, mandrill, twilio). An alert can be sent based on some predefined rule.
 * New Relic is used to monitor two metrics of the production environment.
 * Alerts are sent via email if the cpu performance goes above 20% and the memory utilization is above 20%.
+* Email snapshot from NewRelic:
+![Alt text]()
 
 #### The ability to autoscale individual components of production and maintain and track in a central discovery service. Autoscale can be triggered by a predefined rule.
 * New relic service running on production, sends alerts when the metrics exceed their expected value. We have used this         criteria to autoscale the production environment.
